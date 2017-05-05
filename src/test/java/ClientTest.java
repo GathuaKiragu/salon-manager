@@ -121,4 +121,12 @@ public class ClientTest {
         myClient.update("Jane Kiragu", "077777777" , "Morning", "pictureurl3", "Wigs", 3);
         assertEquals("Jane Kiragu", Client.find(myClient.getId()).getName());
       }
+
+      @Test
+        public void delete_deletesClient_true() {
+        myClient.save();
+        int myClientId = myClient.getId();
+        myClient.delete();
+        assertEquals(null, Client.find(myClientId));
+      }
 }
