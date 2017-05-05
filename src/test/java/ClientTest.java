@@ -69,4 +69,9 @@ public class ClientTest {
         assertEquals(true, Client.all().get(1).equals(secondClient));
       }
 
+      @Test
+      public void clear_emptiesAllClientsFromArrayList_0() {
+        assertEquals(Client.all().size(), 0);
+      }
+
 }
