@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import org.sql2o.*;
 
  public class Client {
    private String name;
@@ -34,7 +35,7 @@ import java.util.List;
      public String getImage() {
        return image;
      }
-// This returns the category id
+// This returns the stylist id
      public int getStyListId() {
        return styListId;
      }
@@ -42,4 +43,46 @@ import java.util.List;
      public String getStyle() {
        return style;
      }
+
+     public int getId() {
+       return id;
+     }
+
+     public static List<Client> all() {
+       String sql = "SELECT id, name, phone, availability, image, style, stylistId FROM clients;";
+        try(Connection con = DB.sql2o.open()) {
+          return con.createQuery(sql).executeAndFetch(Client.class);
+        }
+    }
+
+    @Override
+    public boolean equals(Object otherClient) {
+      if (!(otherClient instanceof Client)) {
+        return false;
+      } else {
+        Client newClient = (Client) otherClient;
+        return this.getName().equals(newClient.getName()) &&
+                this.getPhone().equals(newClient.getPhone()) &&
+                this.getAvailability().equals(newClient.getAvailability()) &&
+                this.getImage().equals(newClient.getImage()) &&
+                this.getStyle().equals(newClient.getStyle()) &&
+                this.getStyListId() == newClient.getStyListId()
+                && this.getId() == newClient.getId();
+      }
+    }
+
+    public void save() {
+     try(Connection con = DB.sql2o.open()) {
+       String sql = "INSERT INTO clients (name, phone, availability, image, style, styListId) VALUES (:name, :phone, :availability, :image, :style, :styListId)";
+       this.id = (int) con.createQuery(sql, true)
+         .addParameter("name", this.name)
+         .addParameter("phone", this.phone)
+         .addParameter("availability", this.availability)
+         .addParameter("image", this.image)
+         .addParameter("style", this.style)
+         .addParameter("styListId", this.styListId)
+         .executeUpdate()
+         .getKey();
+     }
+   }
 }

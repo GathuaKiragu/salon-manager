@@ -1,7 +1,13 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.sql2o.*;
 
 public class ClientTest {
+
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
+
+
 
   private Client myClient;
   @Before
@@ -45,6 +51,22 @@ public class ClientTest {
       @Test
       public void ClientInstantiatesCorrectlywithStyListId_true() {
         assertEquals(1, myClient.getStyListId());
+      }
+
+      @Test
+        public void save_returnsTrueIfClientsAretheSame() {
+          myClient.save();
+          assertTrue(Client.all().get(0).equals(myClient));
+        }
+
+      @Test
+      public void all_returnsAllInstancesOfClient_true() {
+        Client firstClient = new Client("Vanessa Musera", "gggkk" , "Morning", "pictureurl", "Crothets", 1);
+        firstClient.save();
+        Client secondClient = new Client("Clarice Walcott", "kgkkg" , "Noon", "pictureurl1", "BlowDry", 2);
+        secondClient.save();
+        assertEquals(true, Client.all().get(0).equals(firstClient));
+        assertEquals(true, Client.all().get(1).equals(secondClient));
       }
 
 }
