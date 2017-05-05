@@ -39,15 +39,15 @@ import org.sql2o.*;
      public int getStyListId() {
        return styListId;
      }
-
+// This returns clients style
      public String getStyle() {
        return style;
      }
-
+// Returns Clients Id
      public int getId() {
        return id;
      }
-
+// Connects clients class to database
      public static List<Client> all() {
        String sql = "SELECT id, name, phone, availability, image, style, stylistId FROM clients;";
         try(Connection con = DB.sql2o.open()) {
@@ -70,7 +70,7 @@ import org.sql2o.*;
                 && this.getId() == newClient.getId();
       }
     }
-
+    // method to save client record onto the database
     public void save() {
      try(Connection con = DB.sql2o.open()) {
        String sql = "INSERT INTO clients (name, phone, availability, image, style, styListId) VALUES (:name, :phone, :availability, :image, :style, :styListId)";
@@ -85,6 +85,7 @@ import org.sql2o.*;
          .getKey();
      }
   }
+  // method to find client record
           public static Client find(int id) {
             try(Connection con = DB.sql2o.open()) {
               String sql = "SELECT * FROM clients where id=:id";
@@ -94,7 +95,7 @@ import org.sql2o.*;
               return client;
             }
           }
-
+    // method to update clients record
      public void update(String name, String phone, String availability, String image, String style, int styListId) {
        try(Connection con = DB.sql2o.open()) {
        String sql = "UPDATE clients SET name = :name, phone = :phone, availability = :availability, image = :image, style= :style, styListId = :styListId WHERE id = :id";
