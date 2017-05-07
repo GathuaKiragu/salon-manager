@@ -70,4 +70,16 @@ public class StylistTest {
        Stylist savedStylist = Stylist.all().get(0);
        assertEquals(myStylist.getId(), savedStylist.getId());
      }
+     // Test to check if information can be retrieved successfully from the database
+     @Test
+     public void getClients_retrievesAllStylistsFromDatabase_stylistsList() {
+       Stylist myStylist = new Stylist("Jane Kiragu", "254777598696" , "Morning", "Crothets", "imageurl");
+       myStylist.save();
+       Client firstClient = new Client("Vanessa Musera", "gggkk" , "Morning", "pictureurl", "Crothets", myStylist.getId());
+       firstClient.save();
+       Client secondClient = new Client("Vanessa Musera", "gggkk" , "Morning", "pictureurl", "Crothets", myStylist.getId());
+       secondClient.save();
+       Client[] clients = new Client[] { firstClient, secondClient };
+       assertTrue(myStylist.getClients().containsAll(Arrays.asList(clients)));
+     }
  }

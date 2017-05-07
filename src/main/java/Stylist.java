@@ -89,4 +89,13 @@ public class Stylist {
            return stylist;
          }
        }
+      //  Method to get client information form the database
+       public List<Client> getClients() {
+         try(Connection con = DB.sql2o.open()) {
+           String sql = "SELECT * FROM clients where styListId=:id";
+           return con.createQuery(sql)
+             .addParameter("id", this.id)
+             .executeAndFetch(Client.class);
+         }
+       }
 }
