@@ -49,4 +49,17 @@ public class StylistTest {
        secondStylist.save();
        assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
      }
+     @Test
+     public void equals_returnsTrueIfNamesAretheSame() {
+       Stylist firstStylist = new Stylist("Fanulla Kiragu", "254724500045" , "Morning", "Wigs", "imageurl");
+       Stylist secondStylist = new Stylist("Fanulla Kiragu","254724500045" , "Morning", "Wigs", "imageurl");
+       assertTrue(firstStylist.equals(secondStylist));
+     }
+     // Test to check if stylist information can be saved correctly into the database
+     @Test
+     public void save_savesIntoDatabase_true() {
+       Stylist myStylist = new Stylist("Fanulla Kiragu", "254724500045" , "Morning", "Wigs", "imageurl");
+       myStylist.save();
+       assertTrue(Stylist.all().get(0).equals(myStylist));
+     }
  }
