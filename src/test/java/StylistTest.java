@@ -24,4 +24,14 @@ public class StylistTest {
       public void getName_stylistInstantiatesWithName() {
         assertEquals("Jane Kiragu", myStylist.getName());
       }
-  }
+// Test to check if all instances of stylist instantiates correctly
+   @Test
+   public void all_returnsAllInstancesOfStylist_true() {
+     Stylist firstStylist = new Stylist("Jane Kiragu", "25477745496" , "Morning", "Crothets", "imageurl");
+     firstStylist.save();
+     Stylist secondStylist = new Stylist("Mercy Mukami", "25474598696" , "Noon", "Wigs", "imageurl");
+     secondStylist.save();
+     assertEquals(true, Stylist.all().get(0).equals(firstStylist));
+     assertEquals(true, Stylist.all().get(1).equals(secondStylist));
+   }
+ }

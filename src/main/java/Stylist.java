@@ -42,4 +42,41 @@ public class Stylist {
   public int getId() {
     return id;
   }
+  // method to connect stylist to the database
+    public static List<Stylist> all() {
+      String sql = "SELECT id, name, tel, availability, specialty, image FROM stylists;";
+      try(Connection con = DB.sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Stylist.class);
+      }
+    }
+
+    @Override
+    public boolean equals(Object otherStylists) {
+      if (!(otherStylists instanceof Stylist)) {
+        return false;
+      } else {
+        Stylist newStylist = (Stylist) otherStylists ;
+        return this.getName().equals(newStylist.getName()) &&
+               this.getTel().equals(newStylist.getTel()) &&
+               this.getAvailability().equals(newStylist.getAvailability()) &&
+               this.getSpecialty().equals(newStylist.getSpecialty()) &&
+               this.getImage().equals(newStylist.getImage()) &&
+               this.getId() == newStylist.getId();
+      }
+    }
+
+   // method to save stylists information to the database
+     public void save() {
+       try(Connection con = DB.sql2o.open()) {
+         String sql = "INSERT INTO stylists (name, tel, availability, specialty, image) VALUES (:name, :tel, :availability, :specialty, :image)";
+         this.id = (int) con.createQuery(sql, true)
+           .addParameter("name", this.name)
+           .addParameter("tel", this.tel)
+           .addParameter("availability", this.availability)
+           .addParameter("specialty", this.specialty)
+           .addParameter("image", this.image)
+           .executeUpdate()
+           .getKey();
+       }
+     }
 }
