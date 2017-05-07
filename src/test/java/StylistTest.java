@@ -40,4 +40,13 @@ public class StylistTest {
       myStylist.save();
       assertTrue(myStylist.getId() > 0);
     }
+  //  Test to check if find method can find record with id
+     @Test
+     public void find_returnsStylistWithSameId_secondStylist() {
+       Stylist firstStylist = new Stylist("Jane Kiragu", "25477745496" , "Morning", "Crothets", "imageurl");
+       firstStylist.save();
+       Stylist secondStylist = new Stylist("Jane Kiragu", "25477745496" , "Morning", "Crothets", "imageurl");
+       secondStylist.save();
+       assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
+     }
  }
