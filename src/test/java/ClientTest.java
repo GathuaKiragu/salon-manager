@@ -118,8 +118,8 @@ public class ClientTest {
       @Test
       public void update_updatesClientInformation_true() {
         myClient.save();
-        myClient.update("Jane Kiragu", "077777777" , "Morning", "pictureurl3", "Wigs", 3);
-        assertEquals("Jane Kiragu", Client.find(myClient.getId()).getName());
+        myClient.update("Janet Kiragu", "077777777" , "Morning", "pictureurl3", "Wigs", 3);
+        assertEquals("Janet Kiragu", Client.find(myClient.getId()).getName());
       }
 
       @Test
