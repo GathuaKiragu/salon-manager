@@ -34,4 +34,10 @@ public class StylistTest {
      assertEquals(true, Stylist.all().get(0).equals(firstStylist));
      assertEquals(true, Stylist.all().get(1).equals(secondStylist));
    }
+//  Test to check if stylists instanciates correctly with id
+    @Test
+    public void getId_stylistsInstantiateWithAnId_1() {
+      myStylist.save();
+      assertTrue(myStylist.getId() > 0);
+    }
  }
