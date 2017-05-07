@@ -70,7 +70,7 @@ public class StylistTest {
        Stylist savedStylist = Stylist.all().get(0);
        assertEquals(myStylist.getId(), savedStylist.getId());
      }
-     // Test to check if information can be retrieved successfully from the database
+     // Test to check if client information can be retrieved successfully from the database
      @Test
      public void getClients_retrievesAllStylistsFromDatabase_stylistsList() {
        Stylist myStylist = new Stylist("Jane Kiragu", "254777598696" , "Morning", "Crothets", "imageurl");
@@ -81,5 +81,20 @@ public class StylistTest {
        secondClient.save();
        Client[] clients = new Client[] { firstClient, secondClient };
        assertTrue(myStylist.getClients().containsAll(Arrays.asList(clients)));
+     }
+     // Test to check if information from the database can be updated successfully
+     @Test
+     public void update_updatesStylistInformation_true() {
+       myStylist.save();
+       myStylist.update("Janet Kiragu", "077777777" , "Morning", "wigs", "imageurl");
+       assertEquals("Janet Kiragu", Stylist.find(myStylist.getId()).getName());
+     }
+     // Test to check if stylist records can be deleted from the dabase
+     @Test
+       public void delete_deletesStylist_true() {
+       myStylist.save();
+       int myStylistId = myStylist.getId();
+       myStylist.delete();
+       assertEquals(null, Stylist.find(myStylistId));
      }
  }
