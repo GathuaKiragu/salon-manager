@@ -1,17 +1,17 @@
 <h1>Available Stylists!</h1>
 #if(!$stylists)
-  <h4>There Are Currently No Availble Stylists</h4>
+  <h4>There Are Currently No Available Stylists</h4>
 #else
-  <form action="/finalist" method="post">
-    #foreach($squad.getName() in $squadList)
-      <p class="squads">
-        <label for=$squad.getName()>
-        <input type="checkbox" name="squadSelect" value=$squad.getId()>
-          $squad.getName()
+  <form action="/client-list" method="post">
+    #foreach($stylist.getName() in $stylist)
+      <p class="stylist">
+        <label for=$stylist.getName()>
+        <input type="checkbox" name="stylistSelect" value=$stylist.getId()>
+          $stylist.getName()
         </label>
       </p>
     #end
-    <button type="submit" class="btn btn-default">Join Squad!</button>
+    <button type="submit" class="btn btn-default">Submit</button>
   </form>
 #end
-<a href="/squad-registration-form">CREATE YOUR OWN SQUAD</a>
+<a href="/stylist-registration-from">Add New Stylist</a>

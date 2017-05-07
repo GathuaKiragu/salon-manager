@@ -1,5 +1,123 @@
-<h1> Welcome To Salon Manager</h1>
+<h1>Hair Salon Manager</h1>
 
-<a href="/stylist-page" class="btn btn-info" role="button">Stylist Dashboard</a>
+<h2> All Lists: </h2>
 
-<a href="/client-page" class="btn btn-info" role="button">Client DashBoard</a>
+#if($stylists)
+  <p>Click on a stylist to see its clients:</p>
+  <ul>
+    #foreach ($stylist in $stylists)
+      <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
+    #end
+  </ul>
+#else
+  <p>There are no stylists yet!</p>
+#end
+
+<h2>New Stylist:</h2>
+
+<form class="form-horizontal" action="/stylists" method="post">
+   <div class="form-group">
+     <label class="control-label col-sm-2" for="name">Stylist</label>
+     <div class="col-sm-10">
+       <input type="text" class="form-control" id="name" placeholder="Enter The Stylist Name Here" name="name">
+     </div>
+   </div>
+
+   <div class="form-group">
+     <label class="control-label col-sm-2" for="tel">Stylist Tel No.</label>
+     <div class="col-sm-10">
+       <input type="text" class="form-control" id="tel" placeholder="Enter The Stylist Telephone Number" name="tel">
+     </div>
+   </div>
+
+   <div class="form-group">
+       <label class="control-label col-sm-2" for="availability">
+           Availability</label>
+           <div class="col-sm-10">
+       <select id="availability" name="availability" class="form-control" required="required">
+           <option value="na" selected="">When will you be available:</option>
+           <option value="Morning">Morning</option>
+           <option value="Noon">Noon</option>
+           <option value="Evening">Evening</option>
+       </select>
+       </div>
+   </div>
+
+   <div class="form-group">
+     <label class="control-label col-sm-2" for="specialty">Whats the stylists specialty:</label>
+     <div class="col-sm-10">
+       <input type="size" class="form-control" id="specialty" placeholder="specialty" name="specialty">
+     </div>
+   </div>
+
+   <div class="form-group">
+     <label class="control-label col-sm-2" for="image">Image url:</label>
+     <div class="col-sm-10">
+       <input type="size" class="form-control" id="image" placeholder="picture url" name="image">
+     </div>
+
+   <div class="form-group">
+     <div class="col-sm-offset-2 col-sm-10">
+       <button type="submit" class="btn btn-default">Submit</button>
+     </div>
+   </div>
+ </form>
+
+
+
+
+<h2>New Client:</h2>
+
+<form action="/clients" method="post">
+  <label for="stylistId">Select a Stylist</label>
+  <select id='stylistId' name='stylistId' type='text'>
+    #foreach($stylist in $stylists)
+      <option value="$stylist.getId()">$stylist.getName()</option>
+    #end
+  </select>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">Client</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name" placeholder="Enter The Client Name Here" name="name">
+    </div>
+  </div>
+<br>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="tel">Client Tel No.</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="tel" placeholder="Enter The Client Telephone Number" name="tel">
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="availability">
+          Availability</label>
+          <div class="col-sm-10">
+      <select id="availability" name="availability" class="form-control" required="required">
+          <option value="na" selected="">When will you be available:</option>
+          <option value="Morning">Morning</option>
+          <option value="Noon">Noon</option>
+          <option value="Evening">Evening</option>
+      </select>
+      </div>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="specialty">Whats the clients specialty:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="specialty" placeholder="specialty" name="specialty">
+    </div>
+  </div>
+    <br>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="image">Image url:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="image" placeholder="picture url" name="image">
+    </div>
+  </div>
+    <br>
+  <button type="submit" class="btn btn-success">Add Client</button>
+</form>

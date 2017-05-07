@@ -1,0 +1,35 @@
+<h1>$client.getName()</h1>
+<h2> Belongs to: $stylist.getName() list.</h2>
+
+<h2>Edit client:</h2>
+
+<form action="/stylists/$client.getStyListId()/clients/$client.getId()" method="post">
+  <label for="name">Client Name</label>
+  <input id="name" name="name" type="text">
+
+  <label for="phone">Client Number</label>
+  <input id="phone" name="phone" type="text">
+
+  <label class="control-label col-sm-2" for="availability">
+      Availability</label>
+      <div class="col-sm-10">
+  <select id="availability" name="availability" class="form-control" required="required">
+      <option value="na" selected="">When will you be available:</option>
+      <option value="Morning">Morning</option>
+      <option value="Noon">Noon</option>
+      <option value="Evening">Evening</option>
+
+  <label for="image">Client Image</label>
+  <input id="image" name="image" type="text">
+
+  <label for="style">Client Style</label>
+  <input id="style" name="style" type="text">
+
+  <button type="submit" class="btn btn-info">Update Client</button>
+</form>
+
+<form action="/stylists/$client.getStyListId()/clients/$client.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger" id="delete-client">Delete Client</button>
+</form>
+
+<a href="/stylists/$stylist.getId()">Return to $stylist.getName()</a>
