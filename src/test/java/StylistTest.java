@@ -62,4 +62,12 @@ public class StylistTest {
        myStylist.save();
        assertTrue(Stylist.all().get(0).equals(myStylist));
      }
+     // Test to check if saved Object is assigned an id
+     @Test
+     public void save_assignsIdToObject() {
+       Stylist myStylist = new Stylist("Fanulla Kiragu", "254724500045" , "Morning", "Wigs", "imageurl");
+       myStylist.save();
+       Stylist savedStylist = Stylist.all().get(0);
+       assertEquals(myStylist.getId(), savedStylist.getId());
+     }
  }
