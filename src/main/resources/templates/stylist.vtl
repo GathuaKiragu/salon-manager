@@ -1,7 +1,7 @@
 <h1>$stylist.getName() clients:</h1>
 
 <ul>
-  #foreach($client in $stylist.getTasks())
+  #foreach($client in $stylist.getClients())
    <li><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></li>
   #end
 </ul>
