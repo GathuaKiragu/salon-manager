@@ -3,8 +3,12 @@
 #if ($clients)
   <ul>
     #foreach ($client in $clients)
-      <li><a href="/clients/$client.getId()">$client.getName()</a></li>
-      <li><img src="$client.getImage()"></li>
+    <div class="well">
+    <ul>
+      <a href="/clients/$client.getId()">$client.getName()</a>
+      <img class="img-rounded" src="$client.getImage()" alt="Stylist Picture" width="250" height="146" >
+    </ul>
+    </div>
     #end
   </ul>
 #else

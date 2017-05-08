@@ -1,7 +1,10 @@
 <h1>All Stylists</h1>
 <ul>
   #foreach ($stylist in $stylists)
-    <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
+  <div class="stylist">
+    <img class="img-thumbnail" src="$stylist.getImage()" alt="Stylist Picture" width="250" height="146" >
+    <a href="/stylists/$stylist.getId()">$stylist.getName()</a>
+  </div>
   #end
 </ul>
 <a href="/stylist/new">Add New Stylist</a>

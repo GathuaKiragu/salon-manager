@@ -1,8 +1,15 @@
-<h1>$stylist.getName() clients:</h1>
-
+<center>
+<div>
+<img class="img-thumbnail" src="$stylist.getImage()" alt="Stylist Picture" width="250" height="146" >
+<h2>$stylist.getName() clients:</h2>
+</div>
+</center>
 <ul>
   #foreach($client in $stylist.getClients())
-   <li><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></li>
+<ol>
+  <img class="img-thumbnail" src="$stylist.getImage()" alt="Stylist Picture" width="250" height="146" >
+   <h3><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></h3>
+</ol>
   #end
 </ul>
 
