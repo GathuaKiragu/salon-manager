@@ -10,9 +10,6 @@ public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
-
-    Class.forName("com.mysql.jdbc.Driver").newInstance();
-
     ProcessBuilder process = new ProcessBuilder();
      Integer port;
      if (process.environment().get("PORT") != null) {
