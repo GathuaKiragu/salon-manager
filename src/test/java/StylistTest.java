@@ -13,19 +13,19 @@ public class StylistTest {
   public void instanciate(){
   myStylist = new Stylist("Jane Kiragu", "254777598696" , "Morning", "Crothets", "imageurl");
   }
-@Ignore
+
   // Test to check instance of stylist
     @Test
     public void stylist_instantiatesCorrectly_true() {
       assertEquals(true, myStylist instanceof Stylist);
     }
-@Ignore
+
 // Test to check if name instantiates correctly
     @Test
       public void getName_stylistInstantiatesWithName() {
         assertEquals("Jane Kiragu", myStylist.getName());
       }
-@Ignore
+
 // Test to check if all instances of stylist instantiates correctly
    @Test
    public void all_returnsAllInstancesOfStylist_true() {
@@ -36,14 +36,14 @@ public class StylistTest {
      assertEquals(true, Stylist.all().get(0).equals(firstStylist));
      assertEquals(true, Stylist.all().get(1).equals(secondStylist));
    }
-   @Ignore
+
 //  Test to check if stylists instanciates correctly with id
     @Test
     public void getId_stylistsInstantiateWithAnId_1() {
       myStylist.save();
       assertTrue(myStylist.getId() > 0);
     }
-    @Ignore
+
   //  Test to check if find method can find record with id
      @Test
      public void find_returnsStylistWithSameId_secondStylist() {
@@ -53,7 +53,7 @@ public class StylistTest {
        secondStylist.save();
        assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
      }
-     @Ignore
+
      @Test
      public void equals_returnsTrueIfNamesAretheSame() {
        Stylist firstStylist = new Stylist("Fanulla Kiragu", "254724500045" , "Morning", "Wigs", "imageurl");
@@ -61,7 +61,7 @@ public class StylistTest {
        assertTrue(firstStylist.equals(secondStylist));
      }
      // Test to check if stylist information can be saved correctly into the database
-@Ignore
+
      @Test
      public void save_savesIntoDatabase_true() {
        Stylist myStylist = new Stylist("Fanulla Kiragu", "254724500045" , "Morning", "Wigs", "imageurl");
@@ -69,7 +69,7 @@ public class StylistTest {
        assertTrue(Stylist.all().get(0).equals(myStylist));
      }
      // Test to check if saved Object is assigned an id
-@Ignore
+
      @Test
      public void save_assignsIdToObject() {
        Stylist myStylist = new Stylist("Fanulla Kiragu", "254724500045" , "Morning", "Wigs", "imageurl");
@@ -78,7 +78,7 @@ public class StylistTest {
        assertEquals(myStylist.getId(), savedStylist.getId());
      }
      // Test to check if client information can be retrieved successfully from the database
-@Ignore
+
      @Test
      public void getClients_retrievesAllStylistsFromDatabase_stylistsList() {
        Stylist myStylist = new Stylist("Jane Kiragu", "254777598696" , "Morning", "Crothets", "imageurl");
@@ -91,7 +91,7 @@ public class StylistTest {
        assertTrue(myStylist.getClients().containsAll(Arrays.asList(clients)));
      }
      // Test to check if information from the database can be updated successfully
-@Ignore
+
      @Test
      public void update_updatesStylistInformation_true() {
        myStylist.save();
@@ -99,7 +99,7 @@ public class StylistTest {
        assertEquals("Janet Kiragu", Stylist.find(myStylist.getId()).getName());
      }
      // Test to check if stylist records can be deleted from the dabase
-@Ignore
+
      @Test
        public void delete_deletesStylist_true() {
        myStylist.save();
