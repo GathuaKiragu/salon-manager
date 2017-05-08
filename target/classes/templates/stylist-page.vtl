@@ -1,0 +1,17 @@
+<h1>Available Stylists!</h1>
+#if(!$stylists)
+  <h4>There Are Currently No Available Stylists</h4>
+#else
+  <form action="/client-list" method="post">
+    #foreach($stylist.getName() in $stylist)
+      <p class="stylist">
+        <label for=$stylist.getName()>
+        <input type="checkbox" name="stylistSelect" value=$stylist.getId()>
+          $stylist.getName()
+        </label>
+      </p>
+    #end
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+#end
+<a href="/stylist-registration-from">Add New Stylist</a>
