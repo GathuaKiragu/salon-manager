@@ -1,1 +1,0 @@
-web: java -jar ./target/salon-manager-1.0-jar-with-dependencies.jar
