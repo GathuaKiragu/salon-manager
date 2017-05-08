@@ -1,9 +1,11 @@
-import org.sql2o.*;
 import java.util.Map;
 import java.util.HashMap;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class App {
 
@@ -11,6 +13,8 @@ public class App {
   public static void main(String[] args) {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
+
+    Class.forName("com.mysql.jdbc.Driver").newInstance();
 
     ProcessBuilder process = new ProcessBuilder();
      Integer port;
