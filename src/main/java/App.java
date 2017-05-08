@@ -14,7 +14,15 @@ public class App {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
 
-    Class.forName("com.mysql.jdbc.Driver").newInstance();
+    try {
+            // The newInstance() call is a work around for some
+            // broken Java implementations
+
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (Exception ex) {
+            // handle the error
+            
+        }
 
     ProcessBuilder process = new ProcessBuilder();
      Integer port;
