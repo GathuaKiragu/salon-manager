@@ -110,20 +110,20 @@ public class ClientTest {
         assertEquals(myClient.getId(), savedClient.getId());
       }
 
-      // @Test
-      // public void save_savesStyListIdIntoDB_true() {
-        // Stylist myStylist = new Stylist("Janet KoiKoi", "0711234567", "Evening", "Braids");
-        // myStylist.save();
-      //   Client firstClient = new Client("Vanessa Musera", "gggkk" , "Morning", "pictureurl", "Crothets", 1);
-      //   myClient.save();
-      //   Client savedClient = Client.find(myClient.getId());
-      //   assertEquals(savedClient.getStyListId(), myStylist.getId());
-      // }
+      @Test
+      public void save_savesStyListIdIntoDB_true() {
+        Stylist myStylist = new Stylist("Janet KoiKoi", "0711234567", "Evening", "pictureurl", "Braids");
+        myStylist.save();
+        Client firstClient = new Client("Vanessa Musera", "gggkk" , "Morning", "pictureurl", "Crothets", myStylist.getId());
+        myClient.save();
+        Client savedClient = Client.find(myClient.getId());
+        assertEquals(savedClient.getStyListId(), myStylist.getId());
+      }
 
       @Test
       public void update_updatesClientInformation_true() {
         myClient.save();
-        myClient.update("Janet Kiragu", "077777777" , "Morning", "pictureurl3", "Wigs", 3);
+        myClient.update("Janet Kiragu", "077777777" , "Morning", "pictureurl3", "Wigs");
         assertEquals("Janet Kiragu", Client.find(myClient.getId()).getName());
       }
 

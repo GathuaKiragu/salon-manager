@@ -7,15 +7,15 @@ import org.sql2o.*;
    private String phone;
    private String availability;
    private int id;
-   private String image;
+   private String clientImage;
    private String style;
    private int styListId;
 
-    public Client(String name, String phone, String availability, String image, String style, int styListId){
+    public Client(String name, String phone, String availability, String clientImage, String style, int styListId){
         this.name = name;
         this.phone = phone;
         this.availability = availability;
-        this.image = image;
+        this.clientImage = clientImage;
         this.style = style;
         this.styListId = styListId;
      }
@@ -32,8 +32,8 @@ import org.sql2o.*;
        return availability;
      }
 // This returns the clients image
-     public String getImage() {
-       return image;
+     public String getClientImage() {
+       return clientImage;
      }
 // This returns the stylist id
      public int getStyListId() {
@@ -49,7 +49,7 @@ import org.sql2o.*;
      }
 // Connects clients class to database
      public static List<Client> all() {
-       String sql = "SELECT id, name, phone, availability, image, style, stylistId FROM clients;";
+       String sql = "SELECT id, name, phone, availability, clientImage, style, stylistId FROM clients;";
         try(Connection con = DB.sql2o.open()) {
           return con.createQuery(sql).executeAndFetch(Client.class);
         }
@@ -64,21 +64,21 @@ import org.sql2o.*;
         return this.getName().equals(newClient.getName()) &&
                 this.getPhone().equals(newClient.getPhone()) &&
                 this.getAvailability().equals(newClient.getAvailability()) &&
-                this.getImage().equals(newClient.getImage()) &&
+                this.getClientImage().equals(newClient.getClientImage()) &&
                 this.getStyle().equals(newClient.getStyle()) &&
-                this.getStyListId() == newClient.getStyListId()
-                && this.getId() == newClient.getId();
+                this.getId() == newClient.getId() &&
+                this.getStyListId() == newClient.getStyListId();
       }
     }
     // method to save client record onto the database
     public void save() {
      try(Connection con = DB.sql2o.open()) {
-       String sql = "INSERT INTO clients (name, phone, availability, image, style, styListId) VALUES (:name, :phone, :availability, :image, :style, :styListId)";
+       String sql = "INSERT INTO clients (name, phone, availability, clientImage, style, styListId) VALUES (:name, :phone, :availability, :clientImage, :style, :styListId)";
        this.id = (int) con.createQuery(sql, true)
          .addParameter("name", this.name)
          .addParameter("phone", this.phone)
          .addParameter("availability", this.availability)
-         .addParameter("image", this.image)
+         .addParameter("clientImage", this.clientImage)
          .addParameter("style", this.style)
          .addParameter("styListId", this.styListId)
          .executeUpdate()
@@ -96,20 +96,20 @@ import org.sql2o.*;
             }
           }
     // method to update clients record
-     public void update(String name, String phone, String availability, String image, String style, int styListId) {
+     public void update(String name, String phone, String availability, String clientImage, String style) {
        try(Connection con = DB.sql2o.open()) {
-       String sql = "UPDATE clients SET name = :name, phone = :phone, availability = :availability, image = :image, style= :style, styListId = :styListId WHERE id = :id";
+       String sql = "UPDATE clients SET (name, phone, availability, clientImage, style) = (:name, :phone, :availability, :image, :style) WHERE id = :id";
        con.createQuery(sql)
        .addParameter("name", name)
        .addParameter("phone", phone)
        .addParameter("availability", availability)
-       .addParameter("image", image)
+       .addParameter("clientImage", clientImage)
        .addParameter("style", style)
-       .addParameter("styListId", styListId)
        .addParameter("id", id)
        .executeUpdate();
      }
 }
+// method to delete clients from database
     public void delete() {
       try(Connection con = DB.sql2o.open()) {
       String sql = "DELETE FROM clients WHERE id = :id";

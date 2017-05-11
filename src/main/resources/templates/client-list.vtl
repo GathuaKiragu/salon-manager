@@ -2,7 +2,7 @@
 #if(!$stylists)
   <h4>There Are Currently No Available Clients</h4>
 #else
-  <form action="/stylist-details" method="post">
+  <form action="/stylist-page" method="post">
     #foreach($stylist.getName() in $stylist)
       <p class="stylist">
         <label for=$stylist.getName()>

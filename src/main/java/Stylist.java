@@ -38,17 +38,18 @@ public class Stylist {
   public String getImage() {
     return image;
   }
+
+// method to connect stylist to the database
+  public static List<Stylist> all() {
+    String sql = "SELECT id, name, tel, availability, specialty, image FROM stylists;";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Stylist.class);
+    }
+  }
 // returns the stylist id
   public int getId() {
     return id;
   }
-  // method to connect stylist to the database
-    public static List<Stylist> all() {
-      String sql = "SELECT id, name, tel, availability, specialty, image FROM stylists;";
-      try(Connection con = DB.sql2o.open()) {
-        return con.createQuery(sql).executeAndFetch(Stylist.class);
-      }
-    }
 
 @Override
 public boolean equals(Object otherStylists) {

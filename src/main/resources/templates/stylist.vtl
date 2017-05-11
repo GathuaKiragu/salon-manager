@@ -7,7 +7,7 @@
 <ul>
   #foreach($client in $stylist.getClients())
 <ol>
-  <img class="img-thumbnail" src="$stylist.getImage()" alt="Stylist Picture" width="250" height="146" >
+  <img class="img-thumbnail" src="$client.getClientImage()" alt="client Picture" width="250" height="146" >
    <h3><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getName()</a></h3>
 </ol>
   #end
