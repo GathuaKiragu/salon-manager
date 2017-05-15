@@ -1,18 +1,4 @@
-<h1>Hair Salon Manager</h1>
-
-<h2> All Lists: </h2>
-
-#if($stylists)
-  <p>Click on a stylist to see its clients:</p>
-  <ul>
-    #foreach ($stylist in $stylists)
-      <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
-    #end
-  </ul>
-#else
-  <p>There are no stylists yet!</p>
-#end
-
+<h1 style="font-family: 'Monoton', cursive;">Hair Salon Manager</h1>
 <h2>New Stylist:</h2>
 
 <form class="form-horizontal" action="/stylists" method="post">
@@ -122,3 +108,17 @@
     <br>
   <button type="submit" class="btn btn-success">Add Client</button>
 </form>
+
+<h2> All Lists: </h2>
+<div class="jumbotron">
+#if($stylists)
+  <p>Click on a stylist to see its clients:</p>
+  <ul>
+    #foreach ($stylist in $stylists)
+      <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
+    #end
+  </ul>
+#else
+  <p>There are no stylists yet!</p>
+#end
+</div>
