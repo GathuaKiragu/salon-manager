@@ -1,4 +1,4 @@
-## Authors: *** Brian Gathua Kiragu ***
+## Authors: ***Brian Gathua Kiragu***
 
 # Salon-Manager
 ## Description
