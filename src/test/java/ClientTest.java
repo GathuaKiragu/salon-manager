@@ -48,7 +48,7 @@ public class ClientTest {
       @Test
 
       public void ClientInstantiatesCorrectlywithPicture_true() {
-        assertEquals("pictureurl", myClient.getImage());
+        assertEquals("pictureurl", myClient.getClientImage());
       }
     // Test to check if client instanciates correctly with stylistId
 

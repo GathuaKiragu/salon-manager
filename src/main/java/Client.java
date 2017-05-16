@@ -98,7 +98,7 @@ import org.sql2o.*;
     // method to update clients record
      public void update(String name, String phone, String availability, String clientImage, String style) {
        try(Connection con = DB.sql2o.open()) {
-       String sql = "UPDATE clients SET (name, phone, availability, clientImage, style) = (:name, :phone, :availability, :image, :style) WHERE id = :id";
+       String sql = "UPDATE clients SET (name, phone, availability, clientImage, style) = (:name, :phone, :availability, :clientImage, :style) WHERE id = :id";
        con.createQuery(sql)
        .addParameter("name", name)
        .addParameter("phone", phone)
