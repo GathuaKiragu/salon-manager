@@ -85,7 +85,6 @@ public class ClientTest {
         myClient.save();
         assertTrue(myClient.getId() > 0);
       }
-
       @Test
       public void find_returnsClientWithSameId_secondclient() {
         Client firstClient = new Client("Vanessa Musera", "gggkk" , "Morning", "pictureurl", "Crothets", 1);
@@ -94,14 +93,12 @@ public class ClientTest {
         secondClient.save();
         assertEquals(Client.find(secondClient.getId()), secondClient);
       }
-
       @Test
       public void equals_returnsTrueIfClientDetailsAretheSame() {
         Client firstClient = new Client("Vanessa Musera", "gggkk" , "Morning", "pictureurl", "Crothets", 1);
         Client secondClient = new Client("Vanessa Musera", "gggkk" , "Morning", "pictureurl", "Crothets", 1);
         assertTrue(firstClient.equals(secondClient));
       }
-
       @Test
       public void save_assignsIdToObject() {
         Client firstClient = new Client("Vanessa Musera", "gggkk" , "Morning", "pictureurl", "Crothets", 1);
@@ -109,7 +106,6 @@ public class ClientTest {
         Client savedClient = Client.all().get(0);
         assertEquals(myClient.getId(), savedClient.getId());
       }
-
       @Test
       public void save_savesStyListIdIntoDB_true() {
         Stylist myStylist = new Stylist("Janet KoiKoi", "0711234567", "Evening", "pictureurl", "Braids");
@@ -119,14 +115,12 @@ public class ClientTest {
         Client savedClient = Client.find(myClient.getId());
         assertEquals(savedClient.getStyListId(), myStylist.getId());
       }
-
       @Test
       public void update_updatesClientInformation_true() {
         myClient.save();
         myClient.update("Janet Kiragu", "077777777" , "Morning", "pictureurl3", "Wigs");
         assertEquals("Janet Kiragu", Client.find(myClient.getId()).getName());
       }
-
       @Test
         public void delete_deletesClient_true() {
         myClient.save();
